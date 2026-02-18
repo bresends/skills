@@ -1,0 +1,23 @@
+# Obsidian
+.obsidian/workspace*
+
+# Agents
+.agents/
+.claude/
+.gemini/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# Enviroments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
