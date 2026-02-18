@@ -9,6 +9,7 @@ description: Create git commits using conventional commits with scopes. Use when
 
 - **Never** add `Co-Authored-By` lines to commit messages
 - **Never** mention Claude, AI, agent, copilot, or any automated tooling
+- **Never** commit two unrelated changes together. Commits should be atomic.
 - Commits must look like they were written by a human developer
 
 ## Format
