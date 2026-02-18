@@ -9,7 +9,7 @@ What is the user proposing? Extract the core topic/subject. Is it a video to wat
 **If the input contains a YouTube URL**, use Gemini to get the video summary:
 
 ```bash
-nix-shell .claude/skills/filtering-youtube-videos/shell.nix --run "python .claude/skills/filtering-youtube-videos/scripts/gemini_api.py summarize '<youtube_url>'"
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python ~/dev/skills/skills/filtering-youtube-videos/scripts/gemini_api.py summarize '<youtube_url>'"
 ```
 
 This returns JSON with `title`, `channel`, `topics`, `summary`, and `key_concepts`. Use this to understand what the video is about before proceeding to alignment.
@@ -19,7 +19,7 @@ This returns JSON with `title`, `channel`, `topics`, `summary`, and `key_concept
 Before doing a full evaluation, search the Graveyard project for this idea:
 
 ```bash
-nix-shell .claude/skills/managing-projects/shell.nix --run "python .claude/skills/managing-projects/scripts/nexus_tasks.py search '<keyword>'"
+nix-shell ~/dev/skills/skills/managing-projects/shell.nix --run "python ~/dev/skills/skills/managing-projects/scripts/nexus_tasks.py search '<keyword>'"
 ```
 
 **If the idea is already in the Graveyard** → Show the user the existing entry with its rejection reasoning. Say: "You already evaluated this on [date]. Here's why you said no: [reason]. Has something changed?" Only proceed with a full re-evaluation if the user can articulate what's different now.
@@ -42,7 +42,7 @@ For each level, check alignment:
 - **Project**: Does it fit into any active project?
 
 ```bash
-nix-shell .claude/skills/managing-projects/shell.nix --run "python .claude/skills/managing-projects/scripts/nexus_tasks.py project-summary"
+nix-shell ~/dev/skills/skills/managing-projects/shell.nix --run "python ~/dev/skills/skills/managing-projects/scripts/nexus_tasks.py project-summary"
 ```
 
 Present a clear alignment score:
@@ -70,7 +70,7 @@ Always think about the danger of confusing "motion" (doing lots of small things)
 2. File using `nexus_db.py`:
 
 ```bash
-echo '{"project_id": <id>, "name": "...", "description": "..."}' | nix-shell .claude/skills/filtering-youtube-videos/shell.nix --run "python .claude/skills/filtering-youtube-videos/scripts/nexus_db.py create-task -"
+echo '{"project_id": <id>, "name": "...", "description": "..."}' | nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py create-task -"
 ```
 
 **If discarding (0-2/4) → Send to the Graveyard (project ID: 49):**
@@ -82,7 +82,7 @@ echo '{"project_id": <id>, "name": "...", "description": "..."}' | nix-shell .cl
   - **status**: `done` (it's dead on arrival)
 
 ```bash
-echo '{"project_id": 49, "name": "<idea>", "description": "Rejected YYYY-MM-DD. Purpose ✅/❌ | Vision ✅/❌ | Goal ✅/❌ | Project ✅/❌. Reason: <why>. Focus instead on: <current milestones>.", "status": "done"}' | nix-shell .claude/skills/filtering-youtube-videos/shell.nix --run "python .claude/skills/filtering-youtube-videos/scripts/nexus_db.py create-task -"
+echo '{"project_id": 49, "name": "<idea>", "description": "Rejected YYYY-MM-DD. Purpose ✅/❌ | Vision ✅/❌ | Goal ✅/❌ | Project ✅/❌. Reason: <why>. Focus instead on: <current milestones>.", "status": "done"}' | nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py create-task -"
 ```
 
 The Graveyard is not a "someday/maybe" list. It's a cemetery — ideas go there to stay dead. Its purpose is to prevent re-evaluation loops, not to keep options open.

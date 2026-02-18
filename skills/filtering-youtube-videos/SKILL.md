@@ -31,7 +31,7 @@ MANDATORY: When using this skill the timeout should be changed to 10 minutes!
 All Python scripts run via:
 
 ```bash
-nix-shell .claude/skills/filtering-youtube-videos/shell.nix --run "python .claude/skills/filtering-youtube-videos/scripts/<script>.py <args>"
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python ~/dev/skills/skills/filtering-youtube-videos/scripts/<script>.py <args>"
 ```
 
 ## Guiding Principles
@@ -56,8 +56,8 @@ nix-shell -p curl jq --run "curl -sf 'https://www.youtube.com/oembed?url=<youtub
 **Is duplicated?:**
 
 ```bash
-nix-shell .claude/skills/youtube-pipeline/shell.nix --run \
-  "python .claude/skills/youtube-pipeline/scripts/nexus_db.py check-url '<youtube_url>'"
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run \
+  "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py check-url '<youtube_url>'"
 ```
 
 If the video already exists in Nexus, inform the user which project/task it belongs to and **stop** (don't continue).
@@ -121,8 +121,8 @@ tags: [knowledge-profile, relevant-tags]
 Run the Gemini-powered filter analysis:
 
 ```bash
-nix-shell .claude/skills/youtube-pipeline/shell.nix --run \
-  "python .claude/skills/youtube-pipeline/scripts/gemini_api.py filter '<youtube_url>' '<profile_path>'"
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run \
+  "python ~/dev/skills/skills/filtering-youtube-videos/scripts/gemini_api.py filter '<youtube_url>' '<profile_path>'"
 ```
 
 Present the full analysis to the user. The output includes a WATCH/SKIM/SKIP verdict with score, known vs. new concepts, timestamps, and gap analysis.
@@ -152,8 +152,8 @@ Use context from the filter analysis (Step 3) if it provides enough information 
 If there's no filter analysis (user skipped filtering) or it lacks sufficient context, run the summarize command:
 
 ```bash
-nix-shell .claude/skills/youtube-pipeline/shell.nix --run \
-  "python .claude/skills/youtube-pipeline/scripts/gemini_api.py summarize '<youtube_url>'"
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run \
+  "python ~/dev/skills/skills/filtering-youtube-videos/scripts/gemini_api.py summarize '<youtube_url>'"
 ```
 
 Present a brief summary:
@@ -166,8 +166,8 @@ Present a brief summary:
 ### Step 7: Match to a Project
 
 ```bash
-nix-shell .claude/skills/youtube-pipeline/shell.nix --run \
-  "python .claude/skills/youtube-pipeline/scripts/nexus_db.py list-projects"
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run \
+  "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py list-projects"
 ```
 
 Compare video topics against project names, descriptions, and purposes. Then **have a conversation**:
@@ -183,7 +183,7 @@ Compare video topics against project names, descriptions, and purposes. Then **h
 **If creating a new project**:
 
 ```bash
-nix-shell .claude/skills/youtube-pipeline/shell.nix --run "python3 -c '
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python3 -c '
 import json
 data = {
     \"name\": \"...\",
@@ -191,14 +191,14 @@ data = {
     \"purpose\": \"...\"
 }
 print(json.dumps(data))
-' | python .claude/skills/youtube-pipeline/scripts/nexus_db.py create-project -"
+' | python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py create-project -"
 ```
 
 ### Step 8: Match to a Task
 
 ```bash
-nix-shell .claude/skills/youtube-pipeline/shell.nix --run \
-  "python .claude/skills/youtube-pipeline/scripts/nexus_db.py list-tasks <project_id>"
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run \
+  "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py list-tasks <project_id>"
 ```
 
 1. Does the video fit an existing task? Present matches with reasons.
@@ -206,7 +206,7 @@ nix-shell .claude/skills/youtube-pipeline/shell.nix --run \
 3. Suggest a task name and description — let the user confirm or adjust.
 
 ```bash
-nix-shell .claude/skills/youtube-pipeline/shell.nix --run "python3 -c '
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python3 -c '
 import json
 data = {
     \"project_id\": <id>,
@@ -214,20 +214,20 @@ data = {
     \"description\": \"...\"
 }
 print(json.dumps(data))
-' | python .claude/skills/youtube-pipeline/scripts/nexus_db.py create-task -"
+' | python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py create-task -"
 ```
 
 **If renaming or updating a task**:
 
 ```bash
-nix-shell .claude/skills/youtube-pipeline/shell.nix --run "python3 -c '
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python3 -c '
 import json
 data = {
     \"task_id\": <id>,
     \"name\": \"...\"
 }
 print(json.dumps(data))
-' | python .claude/skills/youtube-pipeline/scripts/nexus_db.py update-task -"
+' | python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py update-task -"
 ```
 
 ### Step 9: Add Resource & Confirm
@@ -241,7 +241,7 @@ Include a `notes` field with a brief summary. Use context from the filter analys
 **Recommended approach** (no escaping issues, handles special characters):
 
 ```bash
-nix-shell .claude/skills/youtube-pipeline/shell.nix --run "python3 -c '
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python3 -c '
 import json
 data = {
     \"task_id\": <id>,
@@ -252,7 +252,7 @@ data = {
     \"notes\": \"<summary>\"
 }
 print(json.dumps(data))
-' | python .claude/skills/youtube-pipeline/scripts/nexus_db.py add-resource -"
+' | python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py add-resource -"
 ```
 
 Confirm:

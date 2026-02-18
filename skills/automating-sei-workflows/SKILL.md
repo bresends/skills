@@ -14,7 +14,7 @@ Playwright-based automation for SEI (Sistema Eletrônico de Informações).
 ## Setup
 
 - Credentials: `.env` in skill directory
-- All scripts: `nix-shell .claude/skills/automating-sei-workflows/shell.nix --run "python .claude/skills/automating-sei-workflows/scripts/sei.py <cmd> <args>"`
+- All scripts: `nix-shell ~/dev/skills/skills/automating-sei-workflows/shell.nix --run "python ~/dev/skills/skills/automating-sei-workflows/scripts/sei.py <cmd> <args>"`
 
 ## Guiding Principles
 

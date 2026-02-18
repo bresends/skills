@@ -5,19 +5,19 @@ Move tasks between projects, close projects, and clean up scope.
 **Move a task to another project** — update its `project_id`. Resources follow automatically:
 
 ```bash
-echo '{"task_id": <id>, "project_id": <new_project_id>}' | nix-shell .claude/skills/filtering-youtube-videos/shell.nix --run "python .claude/skills/filtering-youtube-videos/scripts/nexus_db.py update-task -"
+echo '{"task_id": <id>, "project_id": <new_project_id>}' | nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py update-task -"
 ```
 
 **Close a project** — mark as Completed via `update-project`:
 
 ```bash
-echo '{"id": <project_id>, "status": "Completed"}' | nix-shell .claude/skills/filtering-youtube-videos/shell.nix --run "python .claude/skills/filtering-youtube-videos/scripts/nexus_db.py update-project -"
+echo '{"id": <project_id>, "status": "Completed"}' | nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py update-project -"
 ```
 
 **Update a project** — change status, priority, is_active, name, description, purpose, desired_outcome, deadline:
 
 ```bash
-echo '{"id": <project_id>, "status": "On Hold"}' | nix-shell .claude/skills/filtering-youtube-videos/shell.nix --run "python .claude/skills/filtering-youtube-videos/scripts/nexus_db.py update-project -"
+echo '{"id": <project_id>, "status": "On Hold"}' | nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py update-project -"
 ```
 
 ### Workflow

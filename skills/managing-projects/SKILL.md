@@ -40,7 +40,7 @@ Two scripts for different purposes:
 ### `nexus_tasks.py` (read-only queries)
 
 ```bash
-nix-shell .claude/skills/managing-projects/shell.nix --run "python .claude/skills/managing-projects/scripts/nexus_tasks.py <subcommand>"
+nix-shell ~/dev/skills/skills/managing-projects/shell.nix --run "python ~/dev/skills/skills/managing-projects/scripts/nexus_tasks.py <subcommand>"
 ```
 
 Subcommands: `active-tasks`, `project-summary`, `search <query>`
@@ -48,13 +48,13 @@ Subcommands: `active-tasks`, `project-summary`, `search <query>`
 ### `nexus_db.py` (write operations)
 
 ```bash
-nix-shell .claude/skills/filtering-youtube-videos/shell.nix --run "python .claude/skills/filtering-youtube-videos/scripts/nexus_db.py <command> <args>"
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py <command> <args>"
 ```
 
 Pass JSON args via stdin to avoid shell escaping:
 
 ```bash
-echo '{"name":"Project Name","description":"...","purpose":"..."}' | nix-shell .claude/skills/filtering-youtube-videos/shell.nix --run "python .claude/skills/filtering-youtube-videos/scripts/nexus_db.py create-project -"
+echo '{"name":"Project Name","description":"...","purpose":"..."}' | nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py create-project -"
 ```
 
 Available commands: `list-projects`, `list-tasks <project_id>`, `create-project <json>`, `create-task <json>`, `update-task <json>`, `update-project <json>`.

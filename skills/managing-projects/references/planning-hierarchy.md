@@ -29,7 +29,7 @@ All paths relative to vault root (cwd). **Always read these files at runtime** â
 Active projects and tasks live in the Nexus PostgreSQL database. Query via:
 
 ```bash
-nix-shell .claude/skills/managing-projects/shell.nix --run "python .claude/skills/managing-projects/scripts/nexus_tasks.py <subcommand>"
+nix-shell ~/dev/skills/skills/managing-projects/shell.nix --run "python ~/dev/skills/skills/managing-projects/scripts/nexus_tasks.py <subcommand>"
 ```
 
 Subcommands: `active-tasks`, `project-summary`, `search <query>`
@@ -37,7 +37,7 @@ Subcommands: `active-tasks`, `project-summary`, `search <query>`
 For write operations (create-task, create-project, update-task, update-project, add-resource), use the filtering-youtube-videos's `nexus_db.py`:
 
 ```bash
-nix-shell .claude/skills/filtering-youtube-videos/shell.nix --run "python .claude/skills/filtering-youtube-videos/scripts/nexus_db.py <subcommand> <args>"
+nix-shell ~/dev/skills/skills/filtering-youtube-videos/shell.nix --run "python ~/dev/skills/skills/filtering-youtube-videos/scripts/nexus_db.py <subcommand> <args>"
 ```
 
 ## GTD Rules for Next Actions

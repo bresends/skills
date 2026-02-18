@@ -30,8 +30,8 @@ Read the `milestones_reviewed` frontmatter in `📋Planning/About Me.md`. Compar
 Run these commands to get the full picture:
 
 ```bash
-nix-shell .claude/skills/managing-projects/shell.nix --run "python .claude/skills/managing-projects/scripts/nexus_tasks.py active-tasks"
-nix-shell .claude/skills/managing-projects/shell.nix --run "python .claude/skills/managing-projects/scripts/nexus_tasks.py project-summary"
+nix-shell ~/dev/skills/skills/managing-projects/shell.nix --run "python ~/dev/skills/skills/managing-projects/scripts/nexus_tasks.py active-tasks"
+nix-shell ~/dev/skills/skills/managing-projects/shell.nix --run "python ~/dev/skills/skills/managing-projects/scripts/nexus_tasks.py project-summary"
 ```
 
 Also read `📋Planning/Strategic Roadmap.md` for milestone deadlines.
