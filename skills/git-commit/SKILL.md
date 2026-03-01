@@ -64,6 +64,10 @@ EOF
 )"
 ```
 
+## Important Guideline
+
+If a commit has the word `end` it means it is not atomic. Break into more than 1 to make them isolated.
+
 ## Examples
 
 ```text
